@@ -1,0 +1,212 @@
+📊 Network Traffic Analysis & Threat Detection Using Wireshark
+1. Introduction
+
+Network traffic analysis is a critical task for Security Operations Center (SOC) analysts to detect malicious activities, troubleshoot network issues, and identify security risks.
+This project focuses on analyzing live network traffic using Wireshark to understand normal and suspicious behavior across common protocols.
+
+The objective is to simulate real-world SOC scenarios such as:
+
+ICMP reconnaissance
+
+DNS monitoring
+
+HTTP traffic analysis
+
+Credential sniffing
+
+Port scan detection
+
+2. Objective of the Project
+
+Capture and analyze live network traffic
+
+Understand how different protocols behave
+
+Identify potential security threats
+
+Practice SOC-level packet analysis
+
+Gain hands-on experience with Wireshark filters
+
+3. Tools & Environment
+Component	Description
+Tool	Wireshark
+OS	Windows / Kali Linux (VMware)
+Network	Wi-Fi
+Capture Type	Live packet capture
+Analysis Type	Manual packet inspection
+4. Network Architecture (Logical)
+User System
+   |
+Wi-Fi Router
+   |
+Internet
+
+
+Traffic is captured from the Wi-Fi interface and analyzed locally using Wireshark.
+
+5. Methodology
+
+Start live capture on Wi-Fi interface
+
+Generate traffic (ping, browsing, DNS queries)
+
+Apply Wireshark display filters
+
+Analyze packet details
+
+Identify normal vs suspicious behavior
+
+Document findings with screenshots
+
+6. Analysis & Findings
+6.1 ICMP Analysis (Ping Traffic)
+
+Filter Used:
+
+icmp
+
+
+Observation:
+
+ICMP Echo Request and Echo Reply packets observed
+
+Indicates successful connectivity testing
+
+Security Relevance:
+
+Excessive ICMP traffic may indicate reconnaissance or network mapping
+
+Conclusion:
+✔ Normal ICMP activity observed
+
+6.2 DNS Traffic Analysis
+
+Filter Used:
+
+dns
+
+
+Observation:
+
+DNS queries and responses captured
+
+Domain name resolution visible
+
+Security Relevance:
+
+Suspicious domains may indicate malware or C2 communication
+
+DNS tunneling can bypass firewalls
+
+Conclusion:
+✔ Legitimate DNS resolution observed
+
+6.3 HTTP Traffic Analysis
+
+Filter Used:
+
+http
+
+
+Observation:
+
+HTTP GET and response packets captured
+
+Unencrypted web traffic visible
+
+Security Relevance:
+
+HTTP traffic can expose sensitive data
+
+Lack of encryption is a security risk
+
+Conclusion:
+⚠ Insecure HTTP communication detected
+
+6.4 Credential Sniffing (HTTP POST)
+
+Filter Used:
+
+http.request.method == "POST"
+
+
+Observation:
+
+HTTP POST requests identified
+
+Username and password visible in plaintext (when applicable)
+
+Security Risk:
+
+Credentials transmitted without encryption
+
+Vulnerable to Man-in-the-Middle attacks
+
+Conclusion:
+❌ Critical security risk identified
+
+6.5 Port Scan / Reconnaissance Detection
+
+Filter Used:
+
+tcp.flags.syn == 1 && tcp.flags.ack == 0
+
+
+Observation:
+
+Multiple SYN packets sent to different ports
+
+No ACK response from destination
+
+Security Relevance:
+
+Typical behavior of SYN scan
+
+Indicates reconnaissance activity
+
+Conclusion:
+⚠ Potential port scanning detected
+
+7. Key Learnings
+
+Understanding of TCP/IP, ICMP, DNS, HTTP protocols
+
+Ability to detect insecure communication
+
+Hands-on experience in packet inspection
+
+Practical SOC analyst skills
+
+Importance of encrypted traffic (HTTPS)
+
+8. Limitations
+
+HTTPS payload not readable due to encryption
+
+No IDS/IPS integration
+
+Analysis limited to local network traffic
+
+9. Future Scope
+
+Integrate with SIEM tools (Splunk, ELK)
+
+Analyze PCAP files from malware traffic
+
+Map findings to MITRE ATT&CK
+
+Automate alerts using IDS tools (Snort/Suricata)
+
+10. Conclusion
+
+This project demonstrates practical network traffic analysis using Wireshark and highlights common security threats such as credential exposure and port scanning.
+The hands-on approach strengthens SOC analyst skills and provides real-world exposure to packet-level security monitoring.
+
+11. References
+
+Wireshark Official Documentation
+
+TCP/IP Protocol Suite
+
+OWASP Network Security Guidelines

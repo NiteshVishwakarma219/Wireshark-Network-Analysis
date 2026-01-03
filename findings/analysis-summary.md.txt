@@ -1,0 +1,15 @@
+## Key Findings
+
+- ICMP packets confirmed active host connectivity
+- DNS traffic showed successful domain resolution
+- HTTP traffic exposed unencrypted data
+- SYN scan behavior indicated reconnaissance attempt
+
+## Security Impact
+- Unencrypted protocols pose credential theft risk
+- Port scanning can lead to further exploitation
+
+## Recommendations
+- Use HTTPS instead of HTTP
+- Implement IDS/IPS
+- Monitor SYN flood patterns

@@ -1,0 +1,112 @@
+========================================
+Wireshark Filters for Network Analysis
+========================================
+
+Project: Network Traffic Analysis & Threat Detection
+Tool: Wireshark
+Purpose: SOC Analyst Practice
+
+----------------------------------------
+1. ICMP Analysis (Ping & Reachability)
+----------------------------------------
+Filter:
+icmp
+
+Description:
+Displays ICMP Echo Request and Reply packets.
+Used to analyze host connectivity and detect ICMP-based reconnaissance.
+
+----------------------------------------
+2. DNS Traffic Analysis
+----------------------------------------
+Filter:
+dns
+
+Description:
+Shows DNS queries and responses.
+Useful for detecting suspicious domains, DNS tunneling, and C2 communication.
+
+----------------------------------------
+3. HTTP Traffic Analysis
+----------------------------------------
+Filter:
+http
+
+Description:
+Displays unencrypted HTTP traffic.
+Helps identify insecure data transmission over the network.
+
+----------------------------------------
+4. Credential Sniffing (HTTP POST)
+----------------------------------------
+Filter:
+http.request.method == "POST"
+
+Description:
+Captures HTTP POST requests.
+Used to identify plaintext username and password transmission.
+Security risk if credentials are not encrypted.
+
+----------------------------------------
+5. Port Scan / Reconnaissance Detection
+----------------------------------------
+Filter:
+tcp.flags.syn == 1 && tcp.flags.ack == 0
+
+Description:
+Displays TCP SYN packets without ACK responses.
+Indicates reconnaissance or port scanning activity.
+
+----------------------------------------
+6. TCP Traffic Only
+----------------------------------------
+Filter:
+tcp
+
+Description:
+Shows all TCP-based communication.
+Useful for session and handshake analysis.
+
+----------------------------------------
+7. UDP Traffic Only
+----------------------------------------
+Filter:
+udp
+
+Description:
+Displays UDP traffic.
+Commonly used for DNS, streaming, and VoIP analysis.
+
+----------------------------------------
+8. HTTPS Traffic (TLS)
+----------------------------------------
+Filter:
+tls
+
+Description:
+Shows encrypted HTTPS traffic metadata.
+Used to analyze secure communication without payload visibility.
+
+----------------------------------------
+9. ARP Traffic
+----------------------------------------
+Filter:
+arp
+
+Description:
+Displays ARP requests and replies.
+Useful for detecting ARP spoofing and MITM attacks.
+
+----------------------------------------
+10. Failed TCP Connections
+----------------------------------------
+Filter:
+tcp.analysis.flags
+
+Description:
+Shows TCP retransmissions, resets, and failed connections.
+Helpful for troubleshooting and attack detection.
+
+========================================
+End of File
+========================================
